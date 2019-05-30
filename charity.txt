@@ -1,0 +1,39 @@
+pragma solidity ^0.4.24;
+contract Fund{
+
+    struct charity{
+        uint id;
+        string name;
+      
+    }
+
+    mapping (uint => charity)charities;
+function bal() constant public  returns(uint){
+    return this.balance;
+}
+function Deposit() public payable{
+}
+    function charityinsertdetails(uint _id,string _name) public {
+        charities[_id].id = _id;
+        charities[_id].name = _name;
+    } 
+
+    function charitydetails(uint _id)constant public returns(uint,string){
+       
+        return(charities[_id].id,charities[_id].name);
+    
+    }
+       
+     function paycharity(uint _id,address acc,uint amount) payable{
+        if(charities [_id].id==_id) 
+      acc.send(amount);  
+     }
+    
+    
+   function validity(uint _id )public constant returns(bool){
+if(charities [_id].id== _id)
+return true;
+else
+return false;
+ }
+}
